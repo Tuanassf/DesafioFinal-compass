@@ -16,7 +16,7 @@ try {
         .required(),
 
     acessorios: Joi.array()
-        .items(Joi.object('descricao:').min(1).required())
+        .items(Joi.object().min(1).required())
         .required(),
     
     quantidadePassageiros: Joi.number()

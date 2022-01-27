@@ -8,8 +8,8 @@ class CarsRepository  {
       return CarsSchema.find(payload);
     }
     async update(id, payload) {
-      await CarsSchema.updateOne({id, payload});
-      return CarsSchema.findOne({ id: id });
+      await CarsSchema.updateOne({ _id: id }, payload);
+      return CarsSchema.findOne({ _id: id });
     }
     async delete(payload) {
       return CarsSchema.deleteOne(payload);

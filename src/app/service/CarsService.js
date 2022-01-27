@@ -39,7 +39,7 @@ class CarsService {
       'modelo': data.modelo,
       'cor': data.cor,
       'ano': data.ano,
-      'acessorios': data.ano,
+      'acessorios': data.acessorios,
       'quantidadePassageiros': data.quantidadePassageiros
     }
 
