@@ -5,7 +5,10 @@ class CarsRepository  {
       return CarsSchema.create(payload);
     }
     async find(payload) {
-      return employeesSchema.find(payload);
+      return CarsSchema.find(payload);
+    }
+    async delete(payload) {
+      return CarsSchema.deleteOne(payload);
     }
   }
   
