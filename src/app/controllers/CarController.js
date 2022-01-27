@@ -11,10 +11,23 @@ class CarController  {
   }
   async getAllCars(req, res) {
     try {
-        const allCars = await CarsService.find()
-        return res.status(200).json({'veículos':allCars})
+      const allCars = await CarsService.find()
+      return res.status(200).json({'veículos':allCars})
     } catch (error) {
         return res.status(500).json(error.message)
+    }
+  }
+  async updateCar(req, res) {
+    const id = req.params.id;
+    const dataToUpdate = req.body; 
+    try {
+        const updatedCar = await CarsService.update(id, dataToUpdate);
+        res.status(200).json(updatedCar);
+    } catch (error) {
+      return res.status(400).json({
+        'message': 'bad request',
+        'details': [{ 'message': error.message }]
+      })
     }
   }
   async deleteCar(req, res) {

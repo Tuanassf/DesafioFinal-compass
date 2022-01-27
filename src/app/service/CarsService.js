@@ -24,13 +24,33 @@ class CarsService {
       acessorios: payload.acessorios,
       quantidadePassageiros: payload.quantidadePassageiros,
     })
-    return result
+    return result;
   }
+  async update(id, payload) {
+    const data = await CarsRepository.update(id, {
+      'modelo': payload.modelo,
+      'cor': payload.cor,
+      'ano': payload.ano,
+      'acessorios': payload.acessorios,
+      'quantidadePassageiros': payload.quantidadePassageiros,
+    })
+    const result = {
+      '_id': data._id,
+      'modelo': data.modelo,
+      'cor': data.cor,
+      'ano': data.ano,
+      'acessorios': data.ano,
+      'quantidadePassageiros': data.quantidadePassageiros
+    }
+
+    return result;
+  }
+
   async delete(payload) {
     const car = await CarsRepository.delete(payload);
     return car;
   }
-
+  
 }
 
 module.exports = new CarsService();
