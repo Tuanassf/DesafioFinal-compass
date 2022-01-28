@@ -1,4 +1,4 @@
-<h1 align="center">API da CompassoLisa</h1>
+<h1 align="center">API da CompassoLiza</h1>
 
 ## Descrição do Projeto
 <p align="center">🚀 Uma API de aluguel de carros</p> 
