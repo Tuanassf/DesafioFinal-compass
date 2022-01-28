@@ -7,6 +7,7 @@ const UserSchema = mongoose.Schema({
     },
     cpf: {
         type: String,
+        unique: true,
         required: true,
     },
     data_nascimento: {
@@ -15,11 +16,13 @@ const UserSchema = mongoose.Schema({
     },
     email: {
         type: String, 
-          required: true 
+        required: true,
+        unique: true, 
     },
     senha: {
         type: String,
         required: true,
+        select: false,
     },
     habilitado: {
         type: String,

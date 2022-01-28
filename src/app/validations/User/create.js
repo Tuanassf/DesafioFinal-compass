@@ -4,25 +4,29 @@ module.exports = async (req, res, next) => {
 
 try {
     const schema = Joi.object({
-        modelo: Joi.string()
+        nome: Joi.string()
         .required(),      
 
-    cor: Joi.string()
+    cpf: Joi.string()
         .required(),
 
-    ano: Joi.number()
-        .min(1950)
-        .max(2022)
+    data_nascimento: Joi.date()
+        .format('DD/MM/YYYY')
+        .max('now')
         .required(),
 
-    acessorios: Joi.array()
-        .items(Joi.object().min(1).required())
-        .required(),
+        email: Joi.string()
+        .email()
+        .required()
+        .unique(),
     
-    quantidadePassageiros: Joi.number()
+        senha: Joi.string()
+        .min(6)
         .required(),
+
+      habilitado: Joi.string()
+        .required()
       })
-      
 
      const { error } = await schema.validate(req.body, { abortEarl: true })
 

@@ -7,6 +7,9 @@ class CarsRepository  {
     async find(payload) {
       return CarsSchema.find(payload);
     }
+    async findOne(id) {
+      return CarsSchema.findOne({ _id: id });
+    }
     async update(id, payload) {
       await CarsSchema.updateOne({ _id: id }, payload);
       return CarsSchema.findOne({ _id: id });
@@ -14,9 +17,7 @@ class CarsRepository  {
     async delete(payload) {
       return CarsSchema.deleteOne(payload);
     }
-    async findOne(id) {
-      return CarsSchema.findOne({ _id: id });
-    }
+    
   }
   
   module.exports = new CarsRepository();
