@@ -1,9 +1,7 @@
-![deliciasDaMaria](https://user-images.githubusercontent.com/63256085/150689737-60513bc0-8df8-46c1-b89d-69b0cbab21c9.png)
-
-
+<h1 align="center">API da CompassoLisa</h1>
 
 ## Descrição do Projeto
-Dona Maria abriu uma Lojinha para venda de doces caseiros. Para a melhor administração de sua empresinha, resolveu pedir ajuda para organizar seus funcionários e produtos. Nesse cenário, construimos uma API com duas entidades - funcionarios e produtos - para ajudar Maria em suas atividades.  
+<p align="center">🚀 Uma API de aluguel de carros</p> 
 
 ### 🛠 Tecnologias
 As seguintes ferramentas foram usadas na construção do projeto:
@@ -16,12 +14,12 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ### Pré-requisitos
 É importante a instalação das tecnologias utilizadas descritas acima. Além disso, é preciso um editor para trabalhar com o código. Utilizamos o [VSCode](https://code.visualstudio.com/)
 
-#### Passos
-Antes de testar as rotas, é importante seguir alguns passos:
+
+### 🎲 Rodando o Back End (servidor)
 
 ```bash
 # Clone este repositório
-$ git clone https://github.com/MathLopes1/compass-grupo02.git
+$ git clone https://github.com/Tuanassf/DesafioFinal-compass.git
 
 # Acesse a pasta do projeto no terminal/cmd
 $ cd desafiofinal-compass
@@ -70,81 +68,60 @@ $ npm run start
 POST - Cadastrar veículo - http://localhost:3000/api/v1/car
  ```bash
 {
-    "name": "maria da silva",
-    "cpf": "12312312312",
-    "office": "gerente",
-    "birthday": "21/04/2021"
+    "modelo": "Kombi",
+    "cor": "branco",
+    "ano": "2019",
+    "acessorios": [
+    { "descricao": "ABS" }
+    ],
+    "quantidadePassageiros": 5
 }
+
  ```
-GET - Listar funcionários - http://localhost:3000/api/v1/employee
+GET - Listar veículos - http://localhost:3000/api/v1/car
 ```bash
 {
-"employees": [
+"veículos": [
                 {
-                    "employee_id": "a99e8bf7-fa32-4ae7-8b53-5e00b9d43621",
-                    "name": "maria da silva",
-                    "cpf": "123.123.123-12",
-                    "office": "gerente",
-                    "birthday": "21/04/2021",
-                    "situation": "active"
-                }, {
-                    "employee_id": "a99e8bf7-fa32-4ae7-8b53-5e00b9d43622",
-                    "name": "joão da silva",
-                    "cpf": "123.123.123-13",
-                    "office": "gerente",
-                    "birthday": "21/04/2021",
-                    "situation": "deactivate"
-                }
-            ]
-}
+            "_id": "61f17c0e654a60fe5b642003",
+            "modelo": "fusca",
+            "cor": "azul",
+            "ano": 1990,
+            "acessorios": [],
+            "quantidadePassageiros": 6,
+            "__v": 0
+        },{
+            "_id": "61f19d57dedd423405a2c78b",
+            "modelo": "Kombi",
+            "cor": "azul",
+            "ano": 1990,
+            "acessorios": [],
+            "quantidadePassageiros": 6,
+            "__v": 0
+        }
 
 
 ```
-GET - Listar por query params - http://localhost:3000/api/v1/employee/?name=fulano
+GET - Listar por query params - http://localhost:3000/api/v1/car/?modelo="GM S10 2.8"
  ```bash
  {
     {
-        "name": "silva",
-        "office": "gerente"
+        "modelo": "Kombi",
+        "cor": "branca"
     }
 }
  ```
-PUT - Atualizar funcionários - http://localhost:3000/api/v1/employee/:employee_id
+PUT - Atualizar veículos - http://localhost:3000/api/v1/car/:id
 ```bash
 {
-    "name": "maria da roberta",
-    "office": "funcionario",
-    "situation": "deactivate"
-}
+            "modelo": "Kombi",
+            "cor": "azul",
+            "ano": 1990,
+            "acessorios": [],
+            "quantidadePassageiros": 6,
+            "__v": 0
+        }
 ```
-DELETE - Deletar funcionários - http://localhost:3000/api/v1/employee/:employee_id
+DELETE - Deletar veículos - http://localhost:3000/api/v1/car/:id
 
-POST - Cadastrar um produto - http://localhost:3000/api/v1/product
-```bash
-{
-    "name": "notebook dell",
-    "category": "eletronico",
-    "price": "12.32",
-    "employee_id": "a99e8bf7-fa32-4ae7-8b53-5e00b9d43621"
-}
-```
-GET - Listar produtos - http://localhost:3000/api/v1/product
-```bash
-{
-    "employee_id": "a99e8bf7-fa32-4ae7-8b53-5e00b9d43621",
-    "category": "eletronico",
-    "name": "dell",
-    "min_price": 10.5,
-    "max_price":50
-}
-```
-GET - Listar produtos por query params - http://localhost:3000/api/v1/product/?name=dell
-```bash
- {
-   {
-        "name": "dell",
-        "min_price": "00",
-        "max_price": "10"
-   }
-}
 ```
