@@ -17,6 +17,16 @@ class CarController  {
         return res.status(500).json(error.message)
     }
   }
+  async findById (req, res) {
+    const { id } = req.params
+    try {
+      const result = await CarsService.findOne(id)
+      return res.status(200).json(result)
+    } catch (error) {
+      return res.status(500).json(error.message)
+     
+    }
+  }
   async updateCar(req, res) {
     const id = req.params.id;
     const dataToUpdate = req.body; 

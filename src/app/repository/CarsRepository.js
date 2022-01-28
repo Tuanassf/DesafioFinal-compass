@@ -14,7 +14,9 @@ class CarsRepository  {
     async delete(payload) {
       return CarsSchema.deleteOne(payload);
     }
-    
+    async findOne(id) {
+      return CarsSchema.findOne({ _id: id });
+    }
   }
   
   module.exports = new CarsRepository();
