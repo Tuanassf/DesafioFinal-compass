@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bycript = require('bcrypt')
 
 const UserSchema = mongoose.Schema({
     nome: {
@@ -29,6 +30,12 @@ const UserSchema = mongoose.Schema({
         enum: ['sim', 'não'],
         required: true,
     } 
+})
+UserSchema.pre('save', async function(next){
+    const hash = await bycript.hash(this.senha, 10)
+    this.senha = hash
+
+    next()
 })
 
 const users = mongoose.model('User', UserSchema)

@@ -24,7 +24,7 @@ try {
       })
       
 
-     const { error } = await schema.validate(req.body, { abortEarl: true })
+     const { error } = await schema.validate(req.body, { abortEarly: true })
 
     if (error) throw {
         message: 'Bad Request',

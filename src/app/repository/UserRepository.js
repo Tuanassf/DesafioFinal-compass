@@ -4,13 +4,13 @@ class UserRepository  {
     async create(payload) {
       return UserSchema.create(payload);
     }
-    /*async find(payload) {
+    async find(payload) {
       return UserSchema.find(payload);
     }
-    async findOne(id) {
-      return UserSchema.findOne({ _id: id });
+    async findOne(payload) {
+      return UserSchema.findOne({ payload });
     }
-    async update(id, payload) {
+    /*async update(id, payload) {
       await UserSchema.updateOne({ _id: id }, payload);
       return UserSchema.findOne({ _id: id });
     }

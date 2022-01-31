@@ -8,6 +8,9 @@ try {
         .required(),      
 
     cpf: Joi.string()
+    if (id.match(/^[0-9a-fA-F]{24}$/)) {
+      // Yes, it's a valid ObjectId, proceed with `findById` call.
+    }
         .required(),
 
     data_nascimento: Joi.date()
