@@ -50,8 +50,24 @@ class UserController  {
           })
         }
     }
-  
-  
+    
+    async deleteUser(req, res) {
+        try {
+          const id = req.params.id;
+          const user = await UserService.find({ _id: id });
+    
+          if (!user) {
+            return res.status(404).json({ message: 'User not found' });
+          }
+          await UserService.delete({ _id: id });
+          return res.status(204).json();
+        } catch (error) {
+          return res.status(400).json({
+            'message': 'Bad request',
+            'details': [{ 'message': error.message }]
+          });
+        }
+    }
   
 }
 module.exports = new UserController();

@@ -14,9 +14,9 @@ class UserRepository  {
       await UserSchema.updateOne({ _id: id }, payload);
       return UserSchema.findOne({ _id: id });
     }
-    /*async delete(payload) {
+    async delete(payload) {
       return UserSchema.deleteOne(payload);
-    }*/
+    }
     
   }
   
