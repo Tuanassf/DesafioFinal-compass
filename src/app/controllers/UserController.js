@@ -24,8 +24,8 @@ class UserController  {
         } catch (error) {
             return res.status(500).json(error.message)
         }
-      }
-      async findUserById (req, res) {
+    }
+    async findUserById (req, res) {
         const { id } = req.params
         try {
           const result = await UserService.findOne(id)
@@ -34,10 +34,23 @@ class UserController  {
           return res.status(400).json({
             'message': 'bad request',
             'details': [{ 'message': error.message }]
-          })
-         
+          })     
         }
-      }
+    }
+    async updateUser(req, res) {
+        const id = req.params.id;
+        const dataToUpdate = req.body; 
+        try {
+            const updatedUser = await UserService.update(id, dataToUpdate);
+            res.status(200).json(updatedUser);
+        } catch (error) {
+          return res.status(400).json({
+            'message': 'bad request',
+            'details': [{ 'message': error.message }]
+          })
+        }
+    }
+  
   
   
 }
