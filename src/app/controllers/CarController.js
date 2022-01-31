@@ -10,42 +10,14 @@ class CarController  {
     }
   }
   async getAllCars(req, res) {
+    const requestedData = req.query
     try {
-      const modelo = req.query.modelo
-      const cor = req.query.cor
-      const ano = req.query.ano
-      const acessorios = req.query.acessorios
-      const quantidadePassageiros = req.query.quantidadePassageiros
-
-      if (modelo) {
-        const allCars = await CarsService.find({
-          modelo: {
-            $regex: modelo
-          }
-        });
-        
-        if (!allCars.length) {
-          return res.status(404).json({
-            message: "Car not found!"
-          });
-        }
-        return res.status(200).json(allCars);
-      } else {
-        const allCars = await CarsService.find({});
-        return res.status(200).json({ 'veículos':allCars });
-      }
-    } catch (error) {
-      return res.status(500).json(error.message)
-    }
-  }
-  /*async getAllCars(req, res) {
-    try {
-      const allCars = await CarsService.find()
+      const allCars = await CarsService.find(requestedData)
       return res.status(200).json({'veículos':allCars})
     } catch (error) {
         return res.status(500).json(error.message)
     }
-  }*/
+  }
   async findById (req, res) {
     const { id } = req.params
     try {
@@ -55,8 +27,7 @@ class CarController  {
       return res.status(400).json({
         'message': 'bad request',
         'details': [{ 'message': error.message }]
-      })
-     
+      })   
     }
   }
   async updateCar(req, res) {
