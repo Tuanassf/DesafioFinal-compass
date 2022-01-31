@@ -10,7 +10,9 @@ class UserController  {
         user.senha = undefined
         return res.status(201).json(user);
       } catch (error) {
-        return res.status(500).json({ error: error.message })
+        return res.status(500).json({
+            'message': error.message     
+          })     
       }
     }
     async getAllUsers(req, res) {
@@ -18,7 +20,9 @@ class UserController  {
           const allusers = await UserService.find()
           return res.status(200).json({'usuários':allusers})
         } catch (error) {
-            return res.status(500).json(error.message)
+            return res.status(500).json({
+                'message': error.message     
+              })     
         }
     }
     async findUserById (req, res) {
@@ -28,8 +32,7 @@ class UserController  {
           return res.status(200).json(result)
         } catch (error) {
           return res.status(400).json({
-            'message': 'bad request',
-            'details': [{ 'message': error.message }]
+            'message': error.message     
           })     
         }
     }
@@ -41,9 +44,8 @@ class UserController  {
             res.status(200).json(updatedUser);
         } catch (error) {
           return res.status(400).json({
-            'message': 'bad request',
-            'details': [{ 'message': error.message }]
-          })
+            'message': error.message     
+          })     
         }
     }    
     async deleteUser(req, res) {
@@ -58,9 +60,8 @@ class UserController  {
           return res.status(204).json();
         } catch (error) {
           return res.status(400).json({
-            'message': 'Bad request',
-            'details': [{ 'message': error.message }]
-          });
+            'message': error.message     
+          })     
         }
     }
   
