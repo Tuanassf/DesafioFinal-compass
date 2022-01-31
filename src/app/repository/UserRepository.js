@@ -17,7 +17,6 @@ class UserRepository  {
     async delete(payload) {
       return UserSchema.deleteOne(payload);
     }
-    
   }
   
   module.exports = new UserRepository();

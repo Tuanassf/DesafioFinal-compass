@@ -3,15 +3,11 @@ const UserService = require('../service/UserService');
 class UserController  {
     async create(req, res) {
         /*const {cpf} = req.body*/
-
       try {
           /*if(await UserService.findOne({ cpf }))
           return res.status(400).send({ error: 'User already exists with this cpf'})*/
-
         const user = await UserService.create(req.body);
-
         user.senha = undefined
-
         return res.status(201).json(user);
       } catch (error) {
         return res.status(500).json({ error: error.message })
@@ -49,11 +45,10 @@ class UserController  {
             'details': [{ 'message': error.message }]
           })
         }
-    }
-    
+    }    
     async deleteUser(req, res) {
+        const id = req.params.id;
         try {
-          const id = req.params.id;
           const user = await UserService.find({ _id: id });
     
           if (!user) {

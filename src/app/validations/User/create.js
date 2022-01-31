@@ -7,13 +7,10 @@ try {
         nome: Joi.string()
         .required(),      
 
-    cpf: Joi.string()
-    if (id.match(/^[0-9a-fA-F]{24}$/)) {
-      // Yes, it's a valid ObjectId, proceed with `findById` call.
-    }
+        cpf: Joi.string()
         .required(),
 
-    data_nascimento: Joi.date()
+        data_nascimento: Joi.date()
         .format('DD/MM/YYYY')
         .max('now')
         .required(),
@@ -27,7 +24,7 @@ try {
         .min(6)
         .required(),
 
-      habilitado: Joi.string()
+        habilitado: Joi.string()
         .required()
       })
 
