@@ -25,6 +25,20 @@ class UserController  {
             return res.status(500).json(error.message)
         }
       }
+      async findUserById (req, res) {
+        const { id } = req.params
+        try {
+          const result = await UserService.findOne(id)
+          return res.status(200).json(result)
+        } catch (error) {
+          return res.status(400).json({
+            'message': 'bad request',
+            'details': [{ 'message': error.message }]
+          })
+         
+        }
+      }
+  
   
 }
 module.exports = new UserController();

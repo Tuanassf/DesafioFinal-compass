@@ -6,8 +6,8 @@ class UserService {
     return receivedData;
   }
  
-  async findAll (payload) {
-    const result = await CarsRepository.findAll({
+  /*async findAll (payload) {
+    const result = await UserRepository.findAll({
       _id: payload.id,
       modelo: payload.modelo,
       cor: payload.cor,
@@ -16,7 +16,7 @@ class UserService {
       quantidadePassageiros: payload.quantidadePassageiros,
     })
     return result;
-  }
+  }*/
  
   async find(payload) {
     const allUsers = await UserRepository.find(payload);

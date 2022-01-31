@@ -7,8 +7,8 @@ class UserRepository  {
     async find(payload) {
       return UserSchema.find(payload);
     }
-    async findOne(payload) {
-      return UserSchema.findOne({ payload });
+    async findOne(id) {
+      return UserSchema.findOne({ _id: id });
     }
     /*async update(id, payload) {
       await UserSchema.updateOne({ _id: id }, payload);
