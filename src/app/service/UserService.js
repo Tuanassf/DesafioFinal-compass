@@ -27,22 +27,7 @@ class UserService {
     return user;
   }
   async update(id, payload) {
-    const data = await UserRepository.update(id, {
-      'name': payload.name,
-      'cpf': payload.cpf,
-      'data_nascimento': payload.data_nascimento,
-      'email': payload.email,
-      'habilitado': payload.habilitado,
-    })
-    const result = {
-      '_id': data._id,
-      'name': data.name,
-      'cpf': data.cpf,
-      'data_nascimento': data.data_nascimento,
-      'email': data.email,
-      'habilitado': data.habilitado
-    }
-
+    const result = await UserRepository.update(id, payload)
     return result;
   }
 
