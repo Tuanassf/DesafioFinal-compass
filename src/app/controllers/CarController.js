@@ -6,7 +6,9 @@ class CarController  {
       const result = await CarsService.create(req.body);
       return res.status(201).json(result);
     } catch (error) {
-      return res.status(500).json({ error: error.message }).send(error.message)
+      return res.status(500).json({
+        'message': error.message     
+      })     
     }
   }
   async getAllCars(req, res) {
@@ -15,7 +17,9 @@ class CarController  {
       const allCars = await CarsService.find(requestedData)
       return res.status(200).json({'veículos':allCars})
     } catch (error) {
-        return res.status(500).json(error.message)
+        return res.status(500).json({
+          'message': error.message     
+        })     
     }
   }
   async findById (req, res) {
@@ -25,9 +29,8 @@ class CarController  {
       return res.status(200).json(result)
     } catch (error) {
       return res.status(400).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      })   
+        'message': error.message     
+      })     
     }
   }
   async updateCar(req, res) {
@@ -38,26 +41,19 @@ class CarController  {
         res.status(200).json(updatedCar);
     } catch (error) {
       return res.status(400).json({
-        'message': 'bad request',
-        'details': [{ 'message': error.message }]
-      })
+        'message': error.message     
+      })     
     }
   }
   async deleteCar(req, res) {
-    try {
-      const id = req.params.id;
-      const car = await CarsService.find({ _id: id });
-
-      if (!car) {
-        return res.status(404).json({ message: 'Car not found' });
-      }
+    const id = req.params.id
+    try {     
       await CarsService.delete({ _id: id });
-      return res.status(204).json();
+      return res.status(204).end()
     } catch (error) {
       return res.status(400).json({
-        'message': 'Bad request',
-        'details': [{ 'message': error.message }]
-      });
+        'message': error.message     
+      })     
     }
   }
 }
