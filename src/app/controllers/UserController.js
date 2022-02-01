@@ -14,7 +14,7 @@ class UserController  {
             'message': error.message     
           })     
       }
-    }
+    }  
     async getAllUsers(req, res) {
         try {
           const allusers = await UserService.find()

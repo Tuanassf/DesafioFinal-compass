@@ -22,6 +22,8 @@ const CarsSchema = mongoose.Schema({
         type: Number,
         required: true,
     }
+},{
+    versionKey: false
 })
 
 CarsSchema.plugin(mongoosePaginate);

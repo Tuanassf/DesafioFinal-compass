@@ -15,7 +15,7 @@ class CarController  {
     const requestedData = req.query
     try {
       const allCars = await CarsService.find(requestedData)
-      return res.status(200).json({'veículos':allCars})
+      return res.status(200).json(allCars)
     } catch (error) {
         return res.status(500).json({
           'message': error.message     

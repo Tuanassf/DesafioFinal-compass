@@ -31,6 +31,7 @@ const UserSchema = mongoose.Schema({
         required: true,
     } 
 })
+
 UserSchema.pre('save', async function(next){
     const hash = await bycript.hash(this.senha, 10)
     this.senha = hash

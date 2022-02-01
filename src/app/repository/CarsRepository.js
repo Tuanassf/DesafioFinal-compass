@@ -7,7 +7,7 @@ class CarsRepository  {
     async find(payload) {
       const myCustomLabels = {
         totalDocs: 'total',
-        docs: 'itemsList',
+        docs: 'veículos',
         limit: 'perPage',
         page: 'currentPage',
         nextPage: 'next',

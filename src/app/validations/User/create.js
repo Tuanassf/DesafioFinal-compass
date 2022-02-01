@@ -16,7 +16,7 @@ try {
         .required(),
 
         email: Joi.string()
-        .email()
+        .email({ minDomainSegments: 2, tlds: { allow: ['com', 'net'] } })
         .required()
         .unique(),
     
