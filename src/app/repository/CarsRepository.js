@@ -5,7 +5,26 @@ class CarsRepository  {
       return CarsSchema.create(payload);
     }
     async find(payload) {
-      return CarsSchema.find(payload);
+      const myCustomLabels = {
+        totalDocs: 'total',
+        docs: 'itemsList',
+        limit: 'perPage',
+        page: 'currentPage',
+        nextPage: 'next',
+        prevPage: 'prev',
+        totalPages: 'totalPages',
+        pagingCounter: false,
+        meta: false,
+      };
+     
+      const options = {
+        page: 1,
+        limit: 10,
+        offset: 20,
+        customLabels: myCustomLabels,
+      };
+      return CarsSchema.paginate(payload, options);
+      
     }
     async findOne(id) {
       return CarsSchema.findOne({ _id: id });

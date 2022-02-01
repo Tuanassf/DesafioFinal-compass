@@ -15,7 +15,7 @@ servers:
 paths:
   /cars:
     get:
-      summary: Listar Todos os Funcionários
+      summary: Listar Todos os veículos
       parameters:
       - name: name
         in: query

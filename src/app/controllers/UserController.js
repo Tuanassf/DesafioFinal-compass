@@ -58,7 +58,6 @@ class UserController  {
             'message': error.message     
           })     
         }
-    }
-  
+    }  
 }
 module.exports = new UserController();
