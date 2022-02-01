@@ -54,14 +54,14 @@ $ npm run start
 - [x] Criar um endpoint para listar todos os carros cadastrados
 - [x] Criar um endpoint para remover um carro cadastrado
 - [x] Criar um endpoint para atualizar algum carro cadastrado
-- [ ] Criar um endpoint para buscar por id um carro cadastrado
-- [ ] Criar um endpoint para cadastrar uma pessoa
+- [x] Criar um endpoint para buscar por id um carro cadastrado
+- [x] Criar um endpoint para cadastrar uma pessoa
 - [ ] Autenticação com o usuário
-- [ ] Criar um endpoint para atualizar alguma pessoa cadastrada
-- [ ] Criar um endpoint para remover uma pessoa cadastrada
-- [ ] Criar um endpoint para buscar por id uma pessoa cadastrada
-- [ ] Criar um endpoint para listar todos as pessoas cadastradas
-- [x] Validações
+- [x] Criar um endpoint para atualizar alguma pessoa cadastrada
+- [x] Criar um endpoint para remover uma pessoa cadastrada
+- [x] Criar um endpoint para buscar por id uma pessoa cadastrada
+- [x] Criar um endpoint para listar todas as pessoas cadastradas
+- [ ] Validações
  
  ## Testar as Rotas
 
