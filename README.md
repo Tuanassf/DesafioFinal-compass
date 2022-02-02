@@ -1,4 +1,5 @@
- ![Azul e Cinza Clube do Carango Oval Paisagem Adesivo](https://user-images.githubusercontent.com/83101467/152079777-a64db24e-5a1d-45f5-a5cb-f530c12315e0.jpg)
+ 
+ <img src="https://user-images.githubusercontent.com/83101467/152079777-a64db24e-5a1d-45f5-a5cb-f530c12315e0.jpg"  width="10000" height="450">
 
 
 ## Descrição do Projeto
