@@ -3,7 +3,7 @@
 
 
 ## Descrição do Projeto
-<p align="center">🚀 Uma API de aluguel de carros</p> 
+<p align="left">🚀 Uma API de aluguel de carros</p> 
 
 ### 🛠 Tecnologias
 As seguintes ferramentas foram usadas na construção do projeto:
