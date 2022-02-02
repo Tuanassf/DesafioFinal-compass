@@ -1,4 +1,5 @@
-<h1 align="center">https://www.canva.com/design/DAE3KZJyBAM/arkQuK-VEscpc9J_EDC8YQ/view?utm_content=DAE3KZJyBAM&utm_campaign=designshare&utm_medium=link&utm_source=shareyourdesignpanel</h1>
+ ![Azul e Cinza Clube do Carango Oval Paisagem Adesivo](https://user-images.githubusercontent.com/83101467/152079777-a64db24e-5a1d-45f5-a5cb-f530c12315e0.jpg)
+
 
 ## Descrição do Projeto
 <p align="center">🚀 Uma API de aluguel de carros</p> 
@@ -56,7 +57,7 @@ $ npm run start
 - [x] Criar um endpoint para atualizar algum carro cadastrado
 - [x] Criar um endpoint para buscar por id um carro cadastrado
 - [x] Criar um endpoint para cadastrar uma pessoa
-- [ ] Autenticação com o usuário
+- [x] Autenticação com o usuário
 - [x] Criar um endpoint para atualizar alguma pessoa cadastrada
 - [x] Criar um endpoint para remover uma pessoa cadastrada
 - [x] Criar um endpoint para buscar por id uma pessoa cadastrada
