@@ -7,19 +7,19 @@ try {
         modelo: Joi.string()
         .required(),      
 
-    cor: Joi.string()
+        cor: Joi.string()
         .required(),
 
-    ano: Joi.number()
+        ano: Joi.number()
         .min(1950)
         .max(2022)
         .required(),
 
-    acessorios: Joi.array()
+        acessorios: Joi.array()
         .items(Joi.object().min(1).required())
         .required(),
     
-    quantidadePassageiros: Joi.number()
+        quantidadePassageiros: Joi.number()
         .required(),
       })
       
