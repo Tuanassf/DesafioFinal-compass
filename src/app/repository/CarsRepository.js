@@ -23,8 +23,7 @@ class CarsRepository  {
         offset: 20,
         customLabels: myCustomLabels,
       };
-      return CarsSchema.paginate(payload, options);
-      
+      return CarsSchema.paginate(payload, options);    
     }
     async findOne(id) {
       return CarsSchema.findOne({ _id: id });
@@ -37,5 +36,4 @@ class CarsRepository  {
       return CarsSchema.deleteOne(payload);
     }    
   }
-  
   module.exports = new CarsRepository();

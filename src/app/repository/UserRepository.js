@@ -18,5 +18,4 @@ class UserRepository  {
       return UserSchema.deleteOne(payload);
     }
   }
-  
   module.exports = new UserRepository();

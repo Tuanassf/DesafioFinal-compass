@@ -1,11 +1,8 @@
 const UserService = require('../service/UserService');
 
 class UserController  {
-    async create(req, res) {
-        /*const {cpf} = req.body*/
-      try {
-          /*if(await UserService.findOne({ cpf }))
-          return res.status(400).send({ error: 'User already exists with this cpf'})*/
+    async create(req, res) {      
+      try {  
         const user = await UserService.create(req.body);
         user.senha = undefined
         return res.status(201).json(user);
@@ -60,4 +57,5 @@ class UserController  {
         }
     }  
 }
+
 module.exports = new UserController();

@@ -14,9 +14,9 @@ const CarsSchema = mongoose.Schema({
         type: Number,
         required: true,
     },
-    acessorios: 
-        { type: Array, 
-          required: true 
+    acessorios: { 
+        type: Array, 
+        required: true 
     },
     quantidadePassageiros: {
         type: Number,
