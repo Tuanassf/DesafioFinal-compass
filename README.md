@@ -1,4 +1,4 @@
-<h1 align="center">CompassLiza</h1>
+<h1 align="center">https://www.canva.com/design/DAE3KZJyBAM/arkQuK-VEscpc9J_EDC8YQ/view?utm_content=DAE3KZJyBAM&utm_campaign=designshare&utm_medium=link&utm_source=shareyourdesignpanel</h1>
 
 ## Descrição do Projeto
 <p align="center">🚀 Uma API de aluguel de carros</p> 
