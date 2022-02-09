@@ -21,6 +21,7 @@
   "homepage": "https://github.com/Tuanassf/DesafioFinal-compass#readme",
   "devDependencies": {
     "cors": "^2.8.5",
+    "eslint": "^8.8.0",
     "nodemon": "^2.0.15"
   },
   "dependencies": {
