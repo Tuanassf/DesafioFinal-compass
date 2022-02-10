@@ -24,5 +24,16 @@ class RentalController {
       });
     }
   }
+  async findById(req, res) {
+    const { id } = req.params;
+    try {
+      const result = await RentalService.findOne(id);
+      return res.status(200).json(result);
+    } catch (error) {
+      return res.status(400).json({
+        message: error.message,
+      });
+    }
+  }
 }
 module.exports = new RentalController();

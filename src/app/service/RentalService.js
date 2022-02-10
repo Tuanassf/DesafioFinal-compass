@@ -11,5 +11,9 @@ class RentalService {
     const allRentals = await RentalRepository.find(payload);
     return allRentals;
   }
+  async findOne(payload) {
+    const car = await RentalRepository.findOne(payload);
+    return car;
+  }
 }
 module.exports = new RentalService();
