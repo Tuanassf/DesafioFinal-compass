@@ -12,5 +12,17 @@ class RentalController {
       });
     }
   }
+
+  async getAllRentals(req, res) {
+    const requestedData = req.query;
+    try {
+      const allRentals = await RentalService.find(requestedData);
+      return res.status(200).json(allRentals);
+    } catch (error) {
+      return res.status(400).json({
+        message: error.message,
+      });
+    }
+  }
 }
 module.exports = new RentalController();

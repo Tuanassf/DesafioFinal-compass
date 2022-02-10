@@ -6,5 +6,10 @@ class RentalService {
     const receivedData = await RentalRepository.create(payload);
     return receivedData;
   }
+
+  async find(payload) {
+    const allRentals = await RentalRepository.find(payload);
+    return allRentals;
+  }
 }
 module.exports = new RentalService();
