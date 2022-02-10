@@ -1,43 +1,44 @@
+/* eslint-disable func-names */
 const mongoose = require('mongoose');
-const bycript = require('bcrypt')
+const bycript = require('bcrypt');
 
 const UserSchema = mongoose.Schema({
-    nome: {
-        type: String,
-        required: true,
-    },
-    cpf: {
-        type: String,
-        unique: true,
-        required: true,
-    },
-    data_nascimento: {
-        type: String,
-        required: true,
-    },
-    email: {
-        type: String, 
-        required: true,
-        unique: true, 
-    },
-    senha: {
-        type: String,
-        required: true,
-        select: false,
-    },
-    habilitado: {
-        type: String,
-        enum: ['sim', 'não'],
-        required: true,
-    } 
-})
+  nome: {
+    type: String,
+    required: true,
+  },
+  cpf: {
+    type: String,
+    unique: true,
+    required: true,
+  },
+  data_nascimento: {
+    type: String,
+    required: true,
+  },
+  email: {
+    type: String,
+    required: true,
+    unique: true,
+  },
+  senha: {
+    type: String,
+    required: true,
+    select: false,
+  },
+  habilitado: {
+    type: String,
+    enum: ['sim', 'não'],
+    required: true,
+  },
+});
 
-UserSchema.pre('save', async function(next){
-    const hash = await bycript.hash(this.senha, 10)
-    this.senha = hash
+UserSchema.pre('save', async function (next) {
+  const hash = await bycript.hash(this.senha, 10);
+  this.senha = hash;
 
-    next()
-})
+  next();
+});
 
-const users = mongoose.model('User', UserSchema)
+const users = mongoose.model('User', UserSchema);
 module.exports = users;

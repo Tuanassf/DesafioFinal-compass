@@ -1,8 +1,9 @@
+/* eslint-disable class-methods-use-this */
 const UserSchema = require('../schema/UserSchema');
 
 class AuthRepository {
-	async findOne(payload){
-		return await UserSchema.findOne(payload).select('+senha');
-	}
+  async findOne(payload) {
+    return UserSchema.findOne(payload).select('+senha');
+  }
 }
-module.exports = new AuthRepository(); 
+module.exports = new AuthRepository();
