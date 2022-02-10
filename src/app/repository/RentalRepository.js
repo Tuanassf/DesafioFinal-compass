@@ -34,5 +34,8 @@ class RentalRepository {
     await RentalSchema.updateOne({ _id: id }, payload);
     return RentalSchema.findOne({ _id: id });
   }
+  async delete(payload) {
+    return RentalSchema.deleteOne(payload);
+  }
 }
 module.exports = new RentalRepository();
