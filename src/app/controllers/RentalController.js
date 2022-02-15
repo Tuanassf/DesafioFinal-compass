@@ -24,6 +24,7 @@ class RentalController {
       });
     }
   }
+
   async findById(req, res) {
     const { id } = req.params;
     try {
@@ -35,6 +36,7 @@ class RentalController {
       });
     }
   }
+
   async updateRental(req, res) {
     const { id } = req.params;
     const dataToUpdate = req.body;
@@ -47,6 +49,7 @@ class RentalController {
       });
     }
   }
+
   async deleteRental(req, res) {
     const { id } = req.params;
     try {

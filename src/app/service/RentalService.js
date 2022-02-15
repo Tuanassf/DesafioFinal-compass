@@ -11,14 +11,17 @@ class RentalService {
     const allRentals = await RentalRepository.find(payload);
     return allRentals;
   }
+
   async findOne(payload) {
     const car = await RentalRepository.findOne(payload);
     return car;
   }
+
   async update(id, payload) {
     const result = await RentalRepository.update(id, payload);
     return result;
   }
+
   async delete(payload) {
     const car = await RentalRepository.delete(payload);
     return car;

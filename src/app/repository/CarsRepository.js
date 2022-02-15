@@ -37,6 +37,14 @@ class CarsRepository {
     return CarsSchema.findOne({ _id: id });
   }
 
+  async updateAcessories(id, acessoryId, payload) {
+    return CarsSchema.findByIdAndUpdate(
+      id,
+      { $set: { 'acessorios.$[none].descricao': payload.descricao } },
+      { arrayFilters: [{ 'none._id': acessoryId }] },
+    );
+  }
+
   async delete(payload) {
     return CarsSchema.deleteOne(payload);
   }
