@@ -1,15 +1,15 @@
 /* eslint-disable class-methods-use-this */
-const CarsSchema = require('../schema/CarsSchema');
+const RentalSchema = require('../schema/RentalSchema');
 
-class CarsRepository {
+class RentalRepository {
   async create(payload) {
-    return CarsSchema.create(payload);
+    return RentalSchema.create(payload);
   }
 
   async find(payload) {
     const myCustomLabels = {
       totalDocs: 'total',
-      docs: 'veículos',
+      docs: 'locadoras',
       limit: 'perPage',
       page: 'currentPage',
       nextPage: 'next',
@@ -25,20 +25,17 @@ class CarsRepository {
       offset: 20,
       customLabels: myCustomLabels,
     };
-    return CarsSchema.paginate(payload, options);
+    return RentalSchema.paginate(payload, options);
   }
-
   async findOne(id) {
-    return CarsSchema.findOne({ _id: id });
+    return RentalSchema.findOne({ _id: id });
   }
-
   async update(id, payload) {
-    await CarsSchema.updateOne({ _id: id }, payload);
-    return CarsSchema.findOne({ _id: id });
+    await RentalSchema.updateOne({ _id: id }, payload);
+    return RentalSchema.findOne({ _id: id });
   }
-
   async delete(payload) {
-    return CarsSchema.deleteOne(payload);
+    return RentalSchema.deleteOne(payload);
   }
 }
-module.exports = new CarsRepository();
+module.exports = new RentalRepository();

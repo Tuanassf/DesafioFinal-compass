@@ -1,11 +1,12 @@
 /* eslint-disable class-methods-use-this */
-const CarsService = require('../service/CarsService');
+const UserService = require('../service/UserService');
 
-class CarController {
+class UserController {
   async create(req, res) {
     try {
-      const result = await CarsService.create(req.body);
-      return res.status(201).json(result);
+      const user = await UserService.create(req.body);
+      user.senha = undefined;
+      return res.status(201).json(user);
     } catch (error) {
       return res.status(500).json({
         message: error.message,
@@ -13,22 +14,21 @@ class CarController {
     }
   }
 
-  async getAllCars(req, res) {
-    const requestedData = req.query;
+  async getAllUsers(req, res) {
     try {
-      const allCars = await CarsService.find(requestedData);
-      return res.status(200).json(allCars);
+      const allusers = await UserService.find();
+      return res.status(200).json({ usuários: allusers });
     } catch (error) {
-      return res.status(400).json({
+      return res.status(500).json({
         message: error.message,
       });
     }
   }
 
-  async findById(req, res) {
+  async findUserById(req, res) {
     const { id } = req.params;
     try {
-      const result = await CarsService.findOne(id);
+      const result = await UserService.findOne(id);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -37,12 +37,12 @@ class CarController {
     }
   }
 
-  async updateCar(req, res) {
+  async updateUser(req, res) {
     const { id } = req.params;
     const dataToUpdate = req.body;
     try {
-      const updatedCar = await CarsService.update(id, dataToUpdate);
-      return res.status(200).json(updatedCar);
+      const updatedUser = await UserService.update(id, dataToUpdate);
+      return res.status(200).json(updatedUser);
     } catch (error) {
       return res.status(400).json({
         message: error.message,
@@ -50,10 +50,10 @@ class CarController {
     }
   }
 
-  async deleteCar(req, res) {
+  async deleteUser(req, res) {
     const { id } = req.params;
     try {
-      await CarsService.delete({ _id: id });
+      await UserService.delete({ _id: id });
       return res.status(204).end();
     } catch (error) {
       return res.status(400).json({
@@ -63,4 +63,4 @@ class CarController {
   }
 }
 
-module.exports = new CarController();
+module.exports = new UserController();

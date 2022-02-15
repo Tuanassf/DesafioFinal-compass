@@ -1,48 +1,24 @@
+/* eslint-disable class-methods-use-this */
 const CarsRepository = require('../repository/CarsRepository');
 
 class CarsService {
   async create(payload) {
-    const receivedData = await CarsRepository.create({
-      'modelo': payload.modelo,
-      'cor': payload.cor,
-      'ano': payload.ano,
-      'acessorios': payload.acessorios,
-      'quantidadePassageiros': payload.quantidadePassageiros      
-    });
+    const receivedData = await CarsRepository.create(payload);
     return receivedData;
   }
+
   async find(payload) {
     const allCars = await CarsRepository.find(payload);
     return allCars;
   }
-  async findAll (payload) {
-    const result = await CarsRepository.findAll({
-      _id: payload.id,
-      modelo: payload.modelo,
-      cor: payload.cor,
-      ano: payload.ano,
-      acessorios: payload.acessorios,
-      quantidadePassageiros: payload.quantidadePassageiros,
-    })
-    return result;
-  }
-  async update(id, payload) {
-    const data = await CarsRepository.update(id, {
-      'modelo': payload.modelo,
-      'cor': payload.cor,
-      'ano': payload.ano,
-      'acessorios': payload.acessorios,
-      'quantidadePassageiros': payload.quantidadePassageiros,
-    })
-    const result = {
-      '_id': data._id,
-      'modelo': data.modelo,
-      'cor': data.cor,
-      'ano': data.ano,
-      'acessorios': data.acessorios,
-      'quantidadePassageiros': data.quantidadePassageiros
-    }
 
+  async findOne(payload) {
+    const car = await CarsRepository.findOne(payload);
+    return car;
+  }
+
+  async update(id, payload) {
+    const result = await CarsRepository.update(id, payload);
     return result;
   }
 
@@ -50,7 +26,6 @@ class CarsService {
     const car = await CarsRepository.delete(payload);
     return car;
   }
-  
 }
 
 module.exports = new CarsService();

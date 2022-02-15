@@ -1,34 +1,33 @@
 /* eslint-disable class-methods-use-this */
-const CarsService = require('../service/CarsService');
+const RentalService = require('../service/RentalService');
 
-class CarController {
+class RentalController {
   async create(req, res) {
     try {
-      const result = await CarsService.create(req.body);
+      const result = await RentalService.create(req.body);
       return res.status(201).json(result);
     } catch (error) {
-      return res.status(500).json({
-        message: error.message,
+      return res.status(404).json({
+        message: 'Erro ao acessar a rota',
       });
     }
   }
 
-  async getAllCars(req, res) {
+  async getAllRentals(req, res) {
     const requestedData = req.query;
     try {
-      const allCars = await CarsService.find(requestedData);
-      return res.status(200).json(allCars);
+      const allRentals = await RentalService.find(requestedData);
+      return res.status(200).json(allRentals);
     } catch (error) {
       return res.status(400).json({
         message: error.message,
       });
     }
   }
-
   async findById(req, res) {
     const { id } = req.params;
     try {
-      const result = await CarsService.findOne(id);
+      const result = await RentalService.findOne(id);
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
@@ -36,24 +35,22 @@ class CarController {
       });
     }
   }
-
-  async updateCar(req, res) {
+  async updateRental(req, res) {
     const { id } = req.params;
     const dataToUpdate = req.body;
     try {
-      const updatedCar = await CarsService.update(id, dataToUpdate);
-      return res.status(200).json(updatedCar);
+      const updatedRental = await RentalService.update(id, dataToUpdate);
+      return res.status(200).json(updatedRental);
     } catch (error) {
       return res.status(400).json({
         message: error.message,
       });
     }
   }
-
-  async deleteCar(req, res) {
+  async deleteRental(req, res) {
     const { id } = req.params;
     try {
-      await CarsService.delete({ _id: id });
+      await RentalService.delete({ _id: id });
       return res.status(204).end();
     } catch (error) {
       return res.status(400).json({
@@ -62,5 +59,4 @@ class CarController {
     }
   }
 }
-
-module.exports = new CarController();
+module.exports = new RentalController();
