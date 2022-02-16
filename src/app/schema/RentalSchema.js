@@ -1,28 +1,33 @@
+const { string } = require('joi');
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
 const RentalSchema = mongoose.Schema({
   nome: {
     type: String,
-    required: true,
+    required: true
   },
   cnpj: {
     type: String,
     unique: true,
-    required: true,
+    required: true
   },
   atividades: {
     type: String,
-    required: true,
+    required: true
   },
   endereco: [
     {
       cep: String,
-      number: Number,
+      number: String,
       complemento: String,
-      isFilial: Boolean,
-    },
-  ],
+      logradouro: String,
+      bairro: String,
+      localidade: String,
+      uf: String,
+      isFilial: Boolean
+    }
+  ]
 });
 
 RentalSchema.plugin(mongoosePaginate);

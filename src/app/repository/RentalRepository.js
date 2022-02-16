@@ -2,8 +2,8 @@
 const RentalSchema = require('../schema/RentalSchema');
 
 class RentalRepository {
-  async create(payload) {
-    return RentalSchema.create(payload);
+  async create(payload, data) {
+    return await RentalSchema.create(payload, data);
   }
 
   async find(payload) {
@@ -16,14 +16,14 @@ class RentalRepository {
       prevPage: 'prev',
       totalPages: 'totalPages',
       pagingCounter: false,
-      meta: false,
+      meta: false
     };
 
     const options = {
       page: 1,
       limit: 10,
       offset: 20,
-      customLabels: myCustomLabels,
+      customLabels: myCustomLabels
     };
     return RentalSchema.paginate(payload, options);
   }

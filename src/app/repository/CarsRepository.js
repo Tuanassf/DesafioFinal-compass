@@ -16,14 +16,14 @@ class CarsRepository {
       prevPage: 'prev',
       totalPages: 'totalPages',
       pagingCounter: false,
-      meta: false,
+      meta: false
     };
 
     const options = {
       page: 1,
       limit: 10,
       offset: 20,
-      customLabels: myCustomLabels,
+      customLabels: myCustomLabels
     };
     return CarsSchema.paginate(payload, options);
   }
@@ -41,7 +41,7 @@ class CarsRepository {
     return CarsSchema.findByIdAndUpdate(
       id,
       { $set: { 'acessorios.$[none].descricao': payload.descricao } },
-      { arrayFilters: [{ 'none._id': acessoryId }] },
+      { arrayFilters: [{ 'none._id': acessoryId }] }
     );
   }
 

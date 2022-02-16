@@ -1,10 +1,23 @@
 /* eslint-disable class-methods-use-this */
 const RentalRepository = require('../repository/RentalRepository');
+const GetCep = require('../helpers/GetCep');
 
 class RentalService {
-  async create(payload) {
-    const receivedData = await RentalRepository.create(payload);
-    return receivedData;
+  async create(payload, data) {
+    for (let i = 0; i < payload.endereco.length; i++) {
+      const ceps = payload.endereco;
+      const result = ceps[i];
+      const data = await GetCep.getCep(result.cep);
+      const { cep, logradouro, complemento, bairro, localidade, uf } = data;
+      result.cep = cep;
+      result.logradouro = logradouro;
+      result.complemento = complemento;
+      result.bairro = bairro;
+      result.localidade = localidade;
+      result.uf = uf;
+    }
+    const result = await RentalRepository.create(payload, data);
+    return result;
   }
 
   async find(payload) {
