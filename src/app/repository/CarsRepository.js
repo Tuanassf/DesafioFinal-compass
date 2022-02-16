@@ -9,23 +9,22 @@ class CarsRepository {
   async find(payload) {
     const myCustomLabels = {
       totalDocs: 'total',
-      docs: 'veículos',
-      limit: 'perPage',
-      page: 'currentPage',
-      nextPage: 'next',
-      prevPage: 'prev',
-      totalPages: 'totalPages',
+      docs: 'Veiculos',
+      page: 'offset',
+      nextPage: false,
+      prevPage: false,
+      totalPages: 'offsets',
       pagingCounter: false,
-      meta: false
+      meta: false,
+      hasPrevPage: false,
+      hasNextPage: false
     };
-
     const options = {
       page: 1,
-      limit: 10,
-      offset: 20,
+      limit: 100,
       customLabels: myCustomLabels
     };
-    return CarsSchema.paginate(payload, options);
+    return CarsSchema.paginate(payload, options, {});
   }
 
   async findOne(id) {

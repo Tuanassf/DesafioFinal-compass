@@ -1,4 +1,3 @@
-const { string } = require('joi');
 const mongoose = require('mongoose');
 const mongoosePaginate = require('mongoose-paginate-v2');
 
@@ -31,7 +30,6 @@ const RentalSchema = mongoose.Schema({
 });
 
 RentalSchema.plugin(mongoosePaginate);
-/* RentalSchema.path('endereco').options; */
 
 const rental = mongoose.model('rental', RentalSchema);
 module.exports = rental;

@@ -1,5 +1,5 @@
-/* eslint-disable func-names */
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
 const bycript = require('bcrypt');
 
 const UserSchema = mongoose.Schema({
@@ -39,6 +39,8 @@ UserSchema.pre('save', async function (next) {
 
   next();
 });
+
+UserSchema.plugin(mongoosePaginate);
 
 const users = mongoose.model('User', UserSchema);
 module.exports = users;
