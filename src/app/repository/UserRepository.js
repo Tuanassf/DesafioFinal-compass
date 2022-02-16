@@ -15,12 +15,11 @@ class UserRepository {
   }
 
   async update(id, payload) {
-    await UserSchema.updateOne({ _id: id }, payload);
-    return UserSchema.findOne({ _id: id });
+    return UserSchema.findByIdAndUpdate(id, payload, { new: true });
   }
 
-  async delete(payload) {
-    return UserSchema.deleteOne(payload);
+  async delete(id) {
+    return UserSchema.findByIdAndDelete(id);
   }
 }
 module.exports = new UserRepository();

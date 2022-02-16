@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const { Error } = require('mongoose');
 const UserRepository = require('../repository/UserRepository');
 
@@ -29,8 +28,8 @@ class UserService {
     return result;
   }
 
-  async delete(payload) {
-    const user = await UserRepository.delete(payload);
+  async delete(id) {
+    const user = await UserRepository.delete(id);
     return user;
   }
 }

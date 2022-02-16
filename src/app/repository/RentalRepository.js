@@ -3,7 +3,7 @@ const RentalSchema = require('../schema/RentalSchema');
 
 class RentalRepository {
   async create(payload, data) {
-    return await RentalSchema.create(payload, data);
+    return RentalSchema.create(payload, data);
   }
 
   async find(payload) {
@@ -33,12 +33,11 @@ class RentalRepository {
   }
 
   async update(id, payload) {
-    await RentalSchema.updateOne({ _id: id }, payload);
-    return RentalSchema.findOne({ _id: id });
+    return RentalSchema.findByIdAndUpdate(id, payload, { new: true });
   }
 
-  async delete(payload) {
-    return RentalSchema.deleteOne(payload);
+  async delete(id) {
+    return RentalSchema.findByIdAndDelete(id);
   }
 }
 module.exports = new RentalRepository();

@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const RentalRepository = require('../repository/RentalRepository');
 const GetCep = require('../helpers/GetCep');
 
@@ -7,8 +6,8 @@ class RentalService {
     for (let i = 0; i < payload.endereco.length; i++) {
       const ceps = payload.endereco;
       const result = ceps[i];
-      const data = await GetCep.getCep(result.cep);
-      const { cep, logradouro, complemento, bairro, localidade, uf } = data;
+      const info = GetCep.getCep(result.cep);
+      const { cep, logradouro, complemento, bairro, localidade, uf } = info;
       result.cep = cep;
       result.logradouro = logradouro;
       result.complemento = complemento;
@@ -35,8 +34,8 @@ class RentalService {
     return result;
   }
 
-  async delete(payload) {
-    const car = await RentalRepository.delete(payload);
+  async delete(id) {
+    const car = await RentalRepository.delete(id);
     return car;
   }
 }

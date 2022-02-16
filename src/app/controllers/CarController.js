@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const CarsService = require('../service/CarsService');
 
 class CarController {

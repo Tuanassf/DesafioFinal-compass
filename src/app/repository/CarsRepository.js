@@ -33,8 +33,7 @@ class CarsRepository {
   }
 
   async update(id, payload) {
-    await CarsSchema.updateOne({ _id: id }, payload);
-    return CarsSchema.findOne({ _id: id });
+    return CarsSchema.findByIdAndUpdate(id, payload, { new: true });
   }
 
   async updateAcessories(id, acessoryId, payload) {
@@ -45,8 +44,8 @@ class CarsRepository {
     );
   }
 
-  async delete(payload) {
-    return CarsSchema.deleteOne(payload);
+  async delete(id) {
+    return CarsSchema.findByIdAndDelete(id);
   }
 }
 module.exports = new CarsRepository();

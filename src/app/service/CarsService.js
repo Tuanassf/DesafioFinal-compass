@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const CarsRepository = require('../repository/CarsRepository');
 
 class CarsService {
@@ -27,8 +26,8 @@ class CarsService {
     return result;
   }
 
-  async delete(payload) {
-    const car = await CarsRepository.delete(payload);
+  async delete(id) {
+    const car = await CarsRepository.delete(id);
     return car;
   }
 }
