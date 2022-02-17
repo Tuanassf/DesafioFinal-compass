@@ -12,7 +12,7 @@ module.exports = (req, res, next) => {
 
   const [scheme, token] = tokenParts;
 
-  if (!/Bearer$/i.test(scheme)) return res.status(401).send({ error: 'Token isn´t on rigth format' });
+  if (!/Bearer$/i.test(scheme)) return res.status(401).send({ error: 'Token isn´t on right format' });
 
   jwt.verify(token, authConfig.secret, (err, decoded) => {
     if (err) return res.status(401).send({ error: 'Invalid token' });
