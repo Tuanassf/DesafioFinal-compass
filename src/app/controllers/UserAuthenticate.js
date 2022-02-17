@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authService = require('../service/AuthService');

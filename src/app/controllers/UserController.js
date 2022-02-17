@@ -2,7 +2,18 @@ const UserService = require('../service/UserService');
 
 class UserController {
   async create(req, res) {
+    const { cpf, email } = req.body;
     try {
+      const duplicatedCpf = await UserService.find({ cpf });
+      const duplicatedEmail = await UserService.find({ email });
+      console.log(duplicatedCpf);
+      if (!duplicatedCpf === null) {
+        return res.status(400).json({ error: `'${cpf} is already in use'` });
+      }
+      if (!duplicatedEmail === null) {
+        return res.status(400).json({ error: `'${email} is already in use'` });
+      }
+
       const user = await UserService.create(req.body);
       user.senha = undefined;
       return res.status(201).json(user);
