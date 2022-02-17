@@ -8,7 +8,10 @@ module.exports = async (req, res, next) => {
         .pattern(/^(([0-9]{3}.[0-9]{3}.[0-9]{3}-[0-9]{2})|([0-9]{11}))$/)
         .min(11)
         .max(14)
-        .required(),
+        .required()
+        .messages({
+          'string.base': 'Invalid type, cpf must be a string'
+        }),
 
       data_nascimento: Joi.date()
         .max('1-1-2004')

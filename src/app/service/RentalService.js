@@ -6,7 +6,7 @@ class RentalService {
     for (let i = 0; i < payload.endereco.length; i++) {
       const ceps = payload.endereco;
       const result = ceps[i];
-      const info = GetCep.getCep(result.cep);
+      const info = await GetCep.getCep(result.cep);
       const { cep, logradouro, complemento, bairro, localidade, uf } = info;
       result.cep = cep;
       result.logradouro = logradouro;
@@ -25,18 +25,27 @@ class RentalService {
   }
 
   async findOne(payload) {
-    const car = await RentalRepository.findOne(payload);
-    return car;
+    const rental = await RentalRepository.findOne(payload);
+    if (!rental) {
+      throw new Error('Rental not found');
+    }
+    return rental;
   }
 
   async update(id, payload) {
     const result = await RentalRepository.update(id, payload);
+    if (result === null) {
+      throw new Error('Rental not found');
+    }
     return result;
   }
 
   async delete(id) {
-    const car = await RentalRepository.delete(id);
-    return car;
+    const rental = await RentalRepository.delete(id);
+    if (!rental) {
+      throw new Error('Rental not found');
+    }
+    return rental;
   }
 }
 module.exports = new RentalService();

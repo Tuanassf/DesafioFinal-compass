@@ -14,7 +14,7 @@ class UserService {
 
   async findOne(payload) {
     const user = await UserRepository.findOne(payload);
-    if (user === null) {
+    if (!user) {
       throw new Error('User not found');
     }
     return user;

@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const UserService = require('../service/UserService');
 
 class UserController {
@@ -9,7 +8,8 @@ class UserController {
       return res.status(201).json(user);
     } catch (error) {
       return res.status(500).json({
-        message: error.message
+        description: error.details,
+        name: error.message
       });
     }
   }

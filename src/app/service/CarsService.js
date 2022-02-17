@@ -13,11 +13,17 @@ class CarsService {
 
   async findOne(payload) {
     const car = await CarsRepository.findOne(payload);
+    if (!car) {
+      throw new Error('Car not found');
+    }
     return car;
   }
 
   async update(id, payload) {
     const result = await CarsRepository.update(id, payload);
+    if (result === null) {
+      throw new Error('Car not found');
+    }
     return result;
   }
 
