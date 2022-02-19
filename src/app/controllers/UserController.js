@@ -6,7 +6,6 @@ class UserController {
     try {
       const duplicatedCpf = await UserService.find({ cpf });
       const duplicatedEmail = await UserService.find({ email });
-      console.log(duplicatedCpf);
       if (!duplicatedCpf === null) {
         return res.status(400).json({ error: `'${cpf} is already in use'` });
       }
