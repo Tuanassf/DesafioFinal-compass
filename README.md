@@ -63,7 +63,7 @@ $ npm run start
 - [x] Criar um endpoint para remover uma pessoa cadastrada
 - [x] Criar um endpoint para buscar por id uma pessoa cadastrada
 - [x] Criar um endpoint para listar todas as pessoas cadastradas
-- [ ] Validações
+- [x] Validações
  
  ## Testar as Rotas
 
