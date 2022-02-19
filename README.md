@@ -3,7 +3,7 @@
 
 
 ## Descrição do Projeto
-<p align="left">🚀 Uma API de aluguel de carros</p> 
+<p align="left">🚀 Uma API de locação de carros que atua no seguimento de aluguel de carro de luxo e semi luxo. Com carros exclusivos disponibilizados em apenas um modelo por cidade.</p> 
 
 ### 🛠 Tecnologias
 As seguintes ferramentas foram usadas na construção do projeto:
