@@ -1,6 +1,5 @@
 const req = require('supertest');
 const app = require('../../app');
-
 const UserService = require('../../app/service/UserService');
 const RentalService = require('../../app/service/RentalService');
 
@@ -18,11 +17,11 @@ describe('User tests', () => {
       habilitado: 'sim'
     });
   });
-  it('getAll users', async () => {
+  it('should be able to get all users - getAll users', async () => {
     const res = await req(app).get('/api/v1/people/');
     expect(res.status).toBe(200);
   });
-  it('getId user', async () => {
+  it('should be able to get a user by Id - getById user', async () => {
     const res = await req(app).get(`/api/v1/people/${user.u1._id}`);
     expect(res.status).toBe(200);
     expect(res.body.nome).toBe('Tuana');
@@ -31,7 +30,7 @@ describe('User tests', () => {
     expect(res.body.email).toBe('Tuana@email.com');
     expect(res.body.habilitado).toBe('sim');
   });
-  it('post users', async () => {
+  it('should be able to post new users- POST user', async () => {
     const res = await req(app).post('/api/v1/people/').send({
       nome: 'Tatiana',
       cpf: '49135229063',
@@ -47,7 +46,7 @@ describe('User tests', () => {
     expect(res.body.email).toBe('tatiana@email.com');
     expect(res.body.habilitado).toBe('sim');
   });
-  it('put users', async () => {
+  it('should be able to update a user - PUT user', async () => {
     const res = await req(app).put(`/api/v1/people/${user.u1._id}`).send({
       nome: 'Maria',
       cpf: '24263587006',
@@ -63,7 +62,7 @@ describe('User tests', () => {
     expect(res.body.email).toBe('maria@email.com');
     expect(res.body.habilitado).toBe('sim');
   });
-  it('delete user', async () => {
+  it('should be able to delete a user - Delete user', async () => {
     const res = await req(app).delete(`/api/v1/people/${user.u1._id}`);
     expect(res.status).toBe(204);
   });
@@ -84,18 +83,18 @@ describe('Rental tests', () => {
       ]
     });
   });
-  it('getAll rental', async () => {
+  it('should be able to det all rentals - getAll rental', async () => {
     const res = await req(app).get('/api/v1/rental/');
     expect(res.status).toBe(200);
   });
-  it('getId rental', async () => {
+  it('should be able to get one rental by id parameter - getById rental', async () => {
     const res = await req(app).get(`/api/v1/rental/${rental.r1._id}`);
     expect(res.status).toBe(200);
     expect(res.body.nome).toBe('Ford');
     expect(res.body.cnpj).toBe('79707280000122');
     expect(res.body.atividades).toBe('Alugar Automóveis');
   });
-  it('post rentals', async () => {
+  it('should be able to post rentals - POST rental', async () => {
     const res = await req(app)
       .post('/api/v1/rental/')
       .send({
@@ -115,7 +114,7 @@ describe('Rental tests', () => {
     expect(res.body.cnpj).toBe('16547537000106');
     expect(res.body.atividades).toBe('Alugar Automóveis');
   });
-  it('put rentals', async () => {
+  it('should be able to update a rental - PUT rental', async () => {
     const res = await req(app)
       .put(`/api/v1/rental/${rental.r1._id}`)
       .send({
@@ -135,7 +134,7 @@ describe('Rental tests', () => {
     expect(res.body.cnpj).toBe('79707280000122');
     expect(res.body.atividades).toBe('Alugar Automóveis');
   });
-  it('delete rental', async () => {
+  it('should be able to delete a rental- DELETE rental', async () => {
     const res = await req(app).delete(`/api/v1/rental/${rental.r1._id}`);
     expect(res.status).toBe(204);
   });

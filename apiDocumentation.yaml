@@ -12,91 +12,905 @@ externalDocs:
 servers: 
   - url: http://localhost:3000/api/v1/
     description: API compassLiza
+tags:
+  - name: Veículos
+    description: Rotas de carros
+  - name: Usuário
+    description: Rotas de usuários
+  - name: Autenticação
+    description: Autenticação de usuários
+  - name: Locadora
+    description: Rotas de locadoras
+securityDefinitions:
+  Bearer:
+    type: apiKey
+    name: Authorization
+    in: header
 paths:
   /car:
    get:
-      summary: Listar Todos os veículos cadastrados
-      parameters:
-      - name: modelo
-        in: query
-        schema:
-          type: string
-        required: false
-      - name: cor
-        in: query
-        schema:
-          type: string
-        required: false
-      - name: ano
-        in: query
-        schema:
-          type: string
-        required: false
-      - name: quantidadePassageiros
-        in: query
-        schema:
-          type: string
-        required: false
+      post:
+      security:
+        - bearerAuth: []
+      tags:
+        - Veículos
+      summary: Registro de novos veículos
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                  example: Fiat uno
+                cor:
+                  type: string
+                  example: preto
+                ano:
+                  type: number
+                  example: 1994
+                acessorios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      descricao:
+                        type: string
+                        example: 4 Portas
+                quantidadePassageiros:
+                  type: number
+                  example: 5
       responses:
-        200:
-          description: Sucesso
+        '201':
+          description: Created
           content:
-           application/json:
+            application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    modelo:
-                      type: string
-                    cor: 
-                      type: string
-                    ano:
-                      type: number
-                    acessorios:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          descricao:
-                            type: string
-                    quantidadePassageiros:
-                      type: number
-  /car/{id}:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  modelo:
+                    type: string
+                  cor:
+                    type: string
+                  ano:
+                    type: number
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                          type: string
+                  quantidadePassageiros:
+                    type: number
+        '400':
+          description: Bad Request
     get:
-      summary: Listar um veículo através do id
-      parameters: 
-        - name: id
-          in: path
+      security:
+        - bearerAuth: []
+      tags:
+        - Veículos
+      summary: Listar todos os veículos também através de parâmetros
+      parameters:
+        - name: modelo
+          in: query
+          description: Modelo
           schema:
             type: string
-          required: true  
+        - name: cor
+          in: query
+          description: Cor
+          schema:
+            type: string
+        - name: ano
+          in: query
+          description: ano
+          schema:
+            type: number
+        - name: descricao
+          in: query
+          description: Acessórios
+          schema:
+            type: string
+        - name: quantidadePassageiros
+          in: query
+          description: quantidade de passageiros
+          schema:
+            type: number
+        - name: limit
+          in: query
+          description: limite de página
+          schema:
+            type: number
+        - name: total
+          in: query
+          description: total de páginas
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: próxima página
+          schema:
+            type: string
+        - name: offsets
+          in: query
+          description: primeiro resultado após próxima página
+          schema:
+            type: string
       responses:
-        200:
-          description: sucesso
+        '200':
+          description: OK
           content:
-           application/json:
+            application/json:
               schema:
-                type: array
-                items:
-                  type: object
-                  properties:
-                    id:
-                      type: string
-                    modelo:
-                      type: string
-                    cor: 
-                      type: string
-                    ano:
-                      type: number
-                    acessorios:
-                      type: array
-                      items:
-                        type: object
-                        properties:
-                          descricao:
-                            type: string
-                    quantidadePassageiros:
-                      type: number
+                type: object
+                properties:
+                  veiculos:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: number
+                        modelo:
+                          type: string
+                        cor:
+                          type: string
+                        ano:
+                          type: number
+                        acessorios:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              descricao:
+                                type: string
+                        quantidadePassageiros:
+                          type: number
+  /car/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      security:
+        - bearerAuth: []
+      tags:
+        - Veículos
+      summary: Procura um veículo pelo ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  modelo:
+                    type: string
+                  cor:
+                    type: string
+                  ano:
+                    type: number
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                          type: string
+                  quantidadePassageiros:
+                    type: number
+        '404':
+          description: Not Found
+    put:
+      security:
+        - bearerAuth: []
+      tags:
+        - Veículos
+      summary: Atualiza um veículo encontrado pelo ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                modelo:
+                  type: string
+                  example: Hb20
+                cor:
+                  type: string
+                  example: branco
+                ano:
+                  type: number
+                  example: 2019
+                acessorios:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      descricao:
+                        type: string
+                        example: Air bag duplo
+                quantidadePassageiros:
+                  type: number
+                  example: 5
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  modelo:
+                    type: string
+                  cor:
+                    type: string
+                  ano:
+                    type: number
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                          type: string
+                  quantidadePassageiros:
+                    type: number
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+    delete:
+      security:
+        - bearerAuth: []
+      tags:
+        - Veículos
+      summary: Deleta um veículo encontrado através do seu ID
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+  /car/{id}/acessory/{acessoryId}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+      - name: acessoryId
+        in: path
+        schema:
+          type: string
+        required: true
+    patch:
+      security:
+        - bearerAuth: []
+      tags:
+        - Veículos
+      summary: Atualiza os acessórios do veículo encontrado pelo ID
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                descricao:
+                  type: string
+                  example: Ar condicionado
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  modelo:
+                    type: string
+                  cor:
+                    type: string
+                  ano:
+                    type: number
+                  acessorios:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        descricao:
+                          type: string
+                  quantidadePassageiros:
+                    type: number
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+  /user:
+    post:
+      tags:
+        - Usuários
+      summary: Cria um novo usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  example: Ana Amélia
+                cpf:
+                  type: string
+                  example: 05775223778
+                data_nascimento:
+                  type: string
+                  format: date
+                  example: 22/02/1984
+                email:
+                  type: string
+                  example: ameliaana@email.com
+                senha:
+                  type: string
+                  example: 123456
+                habilitado:
+                  type: string
+                  example: sim
+                  enum:
+                    - sim
+                    - nao
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string
+                    format: date
+                  email:
+                    type: string
+                  habilitado:
+                    type: string
+        '400':
+          description: Bad Request
+    get:
+      tags:
+        - Usuário
+      summary: Procura usuário passando parametros
+      parameters:
+        - name: nome
+          in: query
+          description: nome do usuário
+          schema:
+            type: string
+        - name: cpf
+          in: query
+          description: cpf do usuário
+          schema:
+            type: string
+        - name: data_nascimento
+          in: query
+          description: data de nascimento do usuário
+          schema:
+            type: string
+        - name: email
+          in: query
+          description: email do usuário
+          schema:
+            type: string
+        - name: habilitado
+          in: query
+          description: usuário habilitado [sim , não]
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: limite de resultado por página
+          schema:
+            type: number
+        - name: total
+          in: query
+          description: total de páginas
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: próxima página
+          schema:
+            type: string
+        - name: offsets
+          in: query
+          description: primeiro resultado após próxima página
+          schema:
+            type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  Pessoas:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        _id:
+                          type: number
+                        nome:
+                          type: string
+                        cpf:
+                          type: string
+                        data_nascimento:
+                          type: string
+                        email:
+                          type: string
+                        habilitado:
+                          type: string
+        '400':
+          description: Bad Request
+  /user/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags:
+        - usuário
+      summary: Encontra um usuário pelo seu ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string
+                    format: date
+                  email:
+                    type: string
+                  habilitado:
+                    type: string
+        '400':
+          description: Bad Request
+    put:
+      tags:
+        - Usuário
+      summary: Atualiza um usuário 
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                cpf:
+                  type: string
+                data_nascimento:
+                  type: string
+                  format: date
+                  example: 22/02/1987
+                email:
+                  type: string
+                  example: anaamelia@email.com
+                senha:
+                  type: string
+                  example: 123456
+                habilitado:
+                  type: string
+                  example: sim
+                  enum:
+                    - sim
+                    - não
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cpf:
+                    type: string
+                  data_nascimento:
+                    type: string
+                    format: date
+                  email:
+                    type: string
+                  habilitado:
+                    type: string
+        '400':
+          description: Bad request
+        '404':
+          description: Not found
+    delete:
+      tags:
+        - Usuários
+      summary: Deleta um usuário pelo seu ID
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+  /authenticate:
+    post:
+      tags:
+        - Autenticação
+      summary: Loga um usuário
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: anaamelia@email.com
+                senha:
+                  type: string
+                  example: 123456
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  token:
+                    type: string
+                  email:
+                    type: string
+                  habilitado:
+                    type: string
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+  /rental:
+    post:
+      tags:
+        - Locadora
+      summary: Cria uma nova locadora
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  example: CompassLisa
+                cnpj:
+                  type: string
+                  example: 03778130000100
+                atividades:
+                  type: string
+                  example: Aluguel de veiculos de luxo e semi luxo
+                endereco:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      cep:
+                        type: string
+                        example: 50761030
+                      number:
+                        type: string
+                        example: 126
+                      isFilial:
+                        type: boolean
+                        example: false
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        complemento:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: number
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: string
+        '400':
+          description: Bad Request
+    get:
+      tags:
+        - Locadora
+      parameters:
+        - name: nome
+          in: query
+          description: Nome da locadora
+          schema:
+            type: string
+        - name: cnpj
+          in: query
+          description: CNPJ da locadora
+          schema:
+            type: string
+        - name: atividades
+          in: query
+          description: Serviços oferecidos
+          schema:
+            type: string
+        - name: cep
+          in: query
+          description: cep da locadora
+          schema:
+            type: string
+        - name: logradouro
+          in: query
+          description: rua da locadora
+          schema:
+            type: string
+        - name: isFilial
+          in: query
+          description: é filial ou não 
+          schema:
+            type: string
+        - name: limit
+          in: query
+          description: limite de resultados da página
+          schema:
+            type: number
+        - name: total
+          in: query
+          description: total de páginas
+          schema:
+            type: string
+        - name: offset
+          in: query
+          description: próxima página
+          schema:
+            type: string
+        - name: offsets
+          in: query
+          description: primeiro resultado após próxima página
+          schema:
+            type: string
+      summary: Pesquisa todas as locadoras também através de parâmetros
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        complemento:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: number
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: string
+        '400':
+          description: Bad Request
+  /rental/{id}:
+    parameters:
+      - name: id
+        in: path
+        schema:
+          type: string
+        required: true
+    get:
+      tags:
+        - Locadora
+      summary: Lista locadora pelo seu ID
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        complemento:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: number
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: string
+        '400':
+          description: Bad Request
+    put:
+      tags:
+        - Locadora
+      summary: Atualiza uma locadora
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                nome:
+                  type: string
+                  example: CompassLisa
+                cnpj:
+                  type: string
+                  example: 03778130000130
+                atividades:
+                  type: string
+                  example: Aluguel de Veiculos
+                endereco:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      cep:
+                        type: string
+                        example: 50761030
+                      number:
+                        type: string
+                        example: 126
+                      isFilial:
+                        type: boolean
+                        example: true
+      responses:
+        '201':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  _id:
+                    type: number
+                  nome:
+                    type: string
+                  cnpj:
+                    type: string
+                  atividades:
+                    type: string
+                  endereco:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        cep:
+                          type: string
+                        logradouro:
+                          type: string
+                        complemento:
+                          type: string
+                        bairro:
+                          type: string
+                        number:
+                          type: number
+                        localidade:
+                          type: string
+                        uf:
+                          type: string
+                        isFilial:
+                          type: string
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+    delete:
+      tags:
+        - locadora
+      summary: Deleta uma locadora
+      responses:
+        '204':
+          description: No Content
+        '400':
+          description: Bad Request
+        '404':
+          description: Not Found
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
