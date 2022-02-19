@@ -66,7 +66,36 @@ $ npm run start
 - [x] Validações
  
  ## Testar as Rotas
-
+<table>
+    <tr>
+        <td>POST</td>
+        <td>Nome</td>
+    </tr>
+    <tr>
+        <td>PO</td>
+        <td>Felipe Silva</td>
+    </tr>
+    <tr>
+        <td>Scrum Master/Dev</td>
+        <td>Tuana Sampaio</td>
+    </tr>
+    <tr>
+        <td>Deploy/Dev</td>
+        <td>Mylena Amorim</td>
+    </tr> 
+    <tr>
+        <td>QA/Dev</td>
+        <td>Matheus Lopes</td>
+    </tr>     
+    <tr>
+        <td>Code Review/Dev</td>
+        <td>Edson Junior</td>
+    </tr>     
+    <tr>
+        <td>Code Review/Dev</td>
+        <td>Maria Carolinne</td>
+    </tr>        
+</table>
 POST - Cadastrar veículo - http://localhost:3000/api/v1/car
  ```bash
 {
