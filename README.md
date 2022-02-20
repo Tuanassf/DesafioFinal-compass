@@ -82,17 +82,17 @@ $ npm run start
 ## Documentação
 
 ```bash
-Para ter acesso a documentação, e também poder testar a API siga os passos:
+Para ter acesso a documentação e aos testes da API, siga os seguintes passos:
 
 # Inicie a aplicação no vsCode
 $ npm run start
 
-# Em seguida abra seu browser pesquise para ter acesso a documentação da API
+# Em seguida siga a url abaixo para ter acesso a documentação da API
 http://localhost:3000/api/v1/api-docs
 
 ```
 ## Deploy
-Na fase de Deploy utilizou-se a ferramenta Heroku, para fazer a hospedagem da nossa API.
+Na fase de Deploy utilizou-se a ferramenta Heroku para fazer a hospedagem da API.
 
 para ter acesso a Documentação da compass-lisa na Web.
 Acesse:https://compasslisa2.herokuapp.com/api/v1/api-docs/
