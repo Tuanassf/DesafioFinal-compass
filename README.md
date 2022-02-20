@@ -16,8 +16,10 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ### Pré-requisitos
 É importante a instalação das tecnologias utilizadas descritas acima. Além disso, é preciso um editor para trabalhar com o código. Utilizamos o [VSCode](https://code.visualstudio.com/)
 
-```bash
+
 ### 🎲 Configurar variáveis de ambiente
+
+```bash
 Será necessário criar na raiz do projeto um arquivo .env configurar as variáveis:
 
 # Porta que o servidor irá rodar.
