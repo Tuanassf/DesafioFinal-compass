@@ -80,6 +80,8 @@ $ npm run start
 - [x] Validações
  
 ## Documentação
+
+```bash
 Para ter acesso a documentação, e também poder testar a API siga os passos:
 
 # Inicie a aplicação no vsCode
@@ -89,7 +91,7 @@ $ npm run start
 http://localhost:3000/api/v1/api-docs
 
 # Terá acesso a documentação da API
-
+```
 ## Deploy
 Na fase de Deploy utilizou-se a ferramenta Heroku, para fazer a hospedagem da nossa API.
 
