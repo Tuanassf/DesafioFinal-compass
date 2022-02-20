@@ -162,3 +162,6 @@ PUT - Atualizar veículos - http://localhost:3000/api/v1/car/:id
 DELETE - Deletar veículos - http://localhost:3000/api/v1/car/:id
 
 ```
+
+deploy heroku https://compasslisa2.herokuapp.com/api/v1/api-docs/
+
