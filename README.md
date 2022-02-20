@@ -16,6 +16,17 @@ As seguintes ferramentas foram usadas na construção do projeto:
 ### Pré-requisitos
 É importante a instalação das tecnologias utilizadas descritas acima. Além disso, é preciso um editor para trabalhar com o código. Utilizamos o [VSCode](https://code.visualstudio.com/)
 
+```bash
+### 🎲 Configurar variáveis de ambiente
+Será necessário criar na raiz do projeto um arquivo .env configurar as variáveis:
+
+# Porta que o servidor irá rodar.
+PORT=3000
+
+# Endereço para conectar com o Mongo.
+# Exemplo:
+DB_HOST=mongodb://localhost:27017/<name>
+```
 
 ### 🎲 Rodando o Back End (servidor)
 
@@ -40,6 +51,7 @@ $ npm run start
 
 # O servidor inciará na porta:3000 - acesse <http://localhost:3000>
 ```
+
 :file_folder: Bibliotecas utizadas:
 <table>
   <tr>
@@ -65,103 +77,20 @@ $ npm run start
 - [x] Criar um endpoint para listar todas as pessoas cadastradas
 - [x] Validações
  
- ## Testar as Rotas
-<table>
-    <tr>
-        <td>POST</td>
-        <td>Cadastrar veículo</td>
-     <td>http://localhost:3000/api/v1/car<td>
-    </tr>
-    <tr>
-        <td>GET</td>
-        <td>Listar veículos</td>
-     <td>http://localhost:3000/api/v1/car<td>
-    </tr>
-    <tr>
-        <td>GET</td>
-        <td>- Listar por query params </td>
-     <td>http://localhost:3000/api/v1/car/?modelo="GM S10 2.8"<td>
-     
-    </tr>
-    <tr>
-        <td>PUT </td>
-        <td> - Atualizar veículos -</td>
-     <td>http://localhost:3000/api/v1/car/:id<td>
-    </tr> 
-    <tr>
-        <td>DELETE </td>
-        <td> - Deletar veículos -</td>
-     <td>http://localhost:3000/api/v1/car/:id<td>
-    </tr>     
-    <tr>
-        <td>Code Review/Dev</td>
-        <td>Edson Junior</td>
-    </tr>     
-    <tr>
-        <td>Code Review/Dev</td>
-        <td>Maria Carolinne</td>
-    </tr>        
-</table>
-POST - Cadastrar veículo - http://localhost:3000/api/v1/car
- ```bash
-{
-    "modelo": "Kombi",
-    "cor": "branco",
-    "ano": "2019",
-    "acessorios": [
-    { "descricao": "ABS" }
-    ],
-    "quantidadePassageiros": 5
-}
+## Documentação
+Para ter acesso a documentação, e também poder testar a API siga os passos:
 
- ```
-GET - Listar veículos - http://localhost:3000/api/v1/car
-```bash
-{
-"veículos": [
-                {
-            "_id": "61f17c0e654a60fe5b642003",
-            "modelo": "fusca",
-            "cor": "azul",
-            "ano": 1990,
-            "acessorios": [],
-            "quantidadePassageiros": 6,
-            "__v": 0
-        },{
-            "_id": "61f19d57dedd423405a2c78b",
-            "modelo": "Kombi",
-            "cor": "azul",
-            "ano": 1990,
-            "acessorios": [],
-            "quantidadePassageiros": 6,
-            "__v": 0
-        }
+# Inicie a aplicação no vsCode
+$ npm run start
 
+# Em seguida abra seu browser pesquise
+http://localhost:3000/api/v1/api-docs
 
-```
-GET - Listar por query params - http://localhost:3000/api/v1/car/?modelo="GM S10 2.8"
- ```bash
- {
-    {
-        "modelo": "Kombi",
-        "cor": "branca"
-    }
-}
- ```
-PUT - Atualizar veículos - http://localhost:3000/api/v1/car/:id
-```bash
-{
-            "modelo": "Kombi",
-            "cor": "azul",
-            "ano": 1990,
-            "acessorios": [],
-            "quantidadePassageiros": 6,
-            "__v": 0
-        }
-```
-DELETE - Deletar veículos - http://localhost:3000/api/v1/car/:id
+# Terá acesso a documentação da API
 
-```
+## Deploy
+Na fase de Deploy utilizou-se a ferramenta Heroku, para fazer a hospedagem da nossa API.
 
-deploy heroku https://compasslisa2.herokuapp.com/api/v1/api-docs/
+para ter acesso a Documentação da compass-lisa na Web.
+Acesse:https://compasslisa2.herokuapp.com/api/v1/api-docs/
 
