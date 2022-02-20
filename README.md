@@ -94,6 +94,6 @@ http://localhost:3000/api/v1/api-docs
 ## Deploy
 Na fase de Deploy utilizou-se a ferramenta Heroku para fazer a hospedagem da API.
 
-# Para ter acesso a Documentação da compass-lisa na Web.
+$ Para ter acesso a Documentação da compass-lisa na Web.
 Acesse:https://compasslisa2.herokuapp.com/api/v1/api-docs/
 
