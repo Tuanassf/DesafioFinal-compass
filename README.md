@@ -69,23 +69,29 @@ $ npm run start
 <table>
     <tr>
         <td>POST</td>
-        <td>Nome</td>
+        <td>Cadastrar veículo</td>
+     <td>http://localhost:3000/api/v1/car<td>
     </tr>
     <tr>
-        <td>PO</td>
-        <td>Felipe Silva</td>
+        <td>GET</td>
+        <td>Listar veículos</td>
+     <td>http://localhost:3000/api/v1/car<td>
     </tr>
     <tr>
-        <td>Scrum Master/Dev</td>
-        <td>Tuana Sampaio</td>
+        <td>GET</td>
+        <td>- Listar por query params </td>
+     <td>http://localhost:3000/api/v1/car/?modelo="GM S10 2.8"<td>
+     
     </tr>
     <tr>
-        <td>Deploy/Dev</td>
-        <td>Mylena Amorim</td>
+        <td>PUT </td>
+        <td> - Atualizar veículos -</td>
+     <td>http://localhost:3000/api/v1/car/:id<td>
     </tr> 
     <tr>
-        <td>QA/Dev</td>
-        <td>Matheus Lopes</td>
+        <td>DELETE </td>
+        <td> - Deletar veículos -</td>
+     <td>http://localhost:3000/api/v1/car/:id<td>
     </tr>     
     <tr>
         <td>Code Review/Dev</td>
