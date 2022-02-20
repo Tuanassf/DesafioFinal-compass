@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const CarsRepository = require('../repository/CarsRepository');
 
 class CarsService {
@@ -14,16 +13,27 @@ class CarsService {
 
   async findOne(payload) {
     const car = await CarsRepository.findOne(payload);
+    if (!car) {
+      throw new Error('Car not found');
+    }
     return car;
   }
 
   async update(id, payload) {
     const result = await CarsRepository.update(id, payload);
+    if (result === null) {
+      throw new Error('Car not found');
+    }
     return result;
   }
 
-  async delete(payload) {
-    const car = await CarsRepository.delete(payload);
+  async updateAcessories(id, acessoryId, payload) {
+    const result = await CarsRepository.updateAcessories(id, acessoryId, payload);
+    return result;
+  }
+
+  async delete(id) {
+    const car = await CarsRepository.delete(id);
     return car;
   }
 }

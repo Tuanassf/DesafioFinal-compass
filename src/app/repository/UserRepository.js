@@ -7,7 +7,24 @@ class UserRepository {
   }
 
   async find(payload) {
-    return UserSchema.find(payload);
+    const myCustomLabels = {
+      totalDocs: 'total',
+      docs: 'Users',
+      page: 'offset',
+      nextPage: false,
+      prevPage: false,
+      totalPages: 'offsets',
+      pagingCounter: false,
+      meta: false,
+      hasPrevPage: false,
+      hasNextPage: false
+    };
+    const options = {
+      page: 1,
+      limit: 100,
+      customLabels: myCustomLabels
+    };
+    return UserSchema.paginate(payload, options, {});
   }
 
   async findOne(id) {
@@ -15,12 +32,11 @@ class UserRepository {
   }
 
   async update(id, payload) {
-    await UserSchema.updateOne({ _id: id }, payload);
-    return UserSchema.findOne({ _id: id });
+    return UserSchema.findByIdAndUpdate(id, payload, { new: true });
   }
 
-  async delete(payload) {
-    return UserSchema.deleteOne(payload);
+  async delete(id) {
+    return UserSchema.findByIdAndDelete(id);
   }
 }
 module.exports = new UserRepository();

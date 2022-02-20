@@ -8,7 +8,7 @@ class RentalController {
       return res.status(201).json(result);
     } catch (error) {
       return res.status(404).json({
-        message: 'Erro ao acessar a rota',
+        message: error.message
       });
     }
   }
@@ -20,10 +20,11 @@ class RentalController {
       return res.status(200).json(allRentals);
     } catch (error) {
       return res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     }
   }
+
   async findById(req, res) {
     const { id } = req.params;
     try {
@@ -31,10 +32,11 @@ class RentalController {
       return res.status(200).json(result);
     } catch (error) {
       return res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     }
   }
+
   async updateRental(req, res) {
     const { id } = req.params;
     const dataToUpdate = req.body;
@@ -43,10 +45,11 @@ class RentalController {
       return res.status(200).json(updatedRental);
     } catch (error) {
       return res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     }
   }
+
   async deleteRental(req, res) {
     const { id } = req.params;
     try {
@@ -54,7 +57,7 @@ class RentalController {
       return res.status(204).end();
     } catch (error) {
       return res.status(400).json({
-        message: error.message,
+        message: error.message
       });
     }
   }

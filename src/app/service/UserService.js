@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const { Error } = require('mongoose');
 const UserRepository = require('../repository/UserRepository');
 
@@ -15,7 +14,7 @@ class UserService {
 
   async findOne(payload) {
     const user = await UserRepository.findOne(payload);
-    if (user === null) {
+    if (!user) {
       throw new Error('User not found');
     }
     return user;
@@ -29,8 +28,8 @@ class UserService {
     return result;
   }
 
-  async delete(payload) {
-    const user = await UserRepository.delete(payload);
+  async delete(id) {
+    const user = await UserRepository.delete(id);
     return user;
   }
 }

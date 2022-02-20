@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 const authService = require('../service/AuthService');
@@ -10,20 +9,24 @@ class UserAuthenticate {
     try {
       const user = await authService.findOne({ email });
 
-      if (!user) { return res.status(400).json({ error: 'User not found' }); }
+      if (!user) {
+        return res.status(400).json({ error: 'User not found' });
+      }
 
-      if (!await bcrypt.compare(senha, user.senha)) { return res.status(400).json({ error: 'Invalid password' }); }
+      if (!(await bcrypt.compare(senha, user.senha))) {
+        return res.status(400).json({ error: 'Invalid password' });
+      }
 
       user.senha = undefined;
 
       const token = jwt.sign({ id: user.id }, authConfig.secret, {
-        expiresIn: 86400,
+        expiresIn: 86400
       });
 
       return res.send({ user, token });
     } catch (error) {
       return res.status(500).json({
-        message: error.message,
+        message: error.message
       });
     }
   }
